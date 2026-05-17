@@ -3639,16 +3639,5 @@ public partial class App : Application, OpenClawTray.Services.IAppCommands
             }
         }
     }
-
-    private Microsoft.UI.Dispatching.DispatcherQueue? AppDispatcherQueue =>
-        Microsoft.UI.Dispatching.DispatcherQueue.GetForCurrentThread();
 }
 
-internal class AppLogger : IOpenClawLogger
-{
-    public void Info(string message) => Logger.Info(message);
-    public void Debug(string message) => Logger.Debug(message);
-    public void Warn(string message) => Logger.Warn(message);
-    public void Error(string message, Exception? ex = null) => 
-        Logger.Error(ex != null ? $"{message}: {ex.Message}" : message);
-}
