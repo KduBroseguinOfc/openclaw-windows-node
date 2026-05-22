@@ -2107,9 +2107,6 @@ Voer op uw gateway-host (Mac/Linux) uit:
   <data name="UsagePage_TextBlock_45.Text" xml:space="preserve">
     <value>Toegangstokens</value>
   </data>
-  <data name="TokenCountText.Text" xml:space="preserve">
-    <value>284.5K</value>
-  </data>
   <data name="UsagePage_TextBlock_55.Text" xml:space="preserve">
     <value>Aanbieders</value>
   </data>
@@ -2369,7 +2366,7 @@ Voer op uw gateway-host (Mac/Linux) uit:
     <value>OpenClaw Menu</value>
   </data>
   <data name="UsagePage_TextBlock_10.Text" xml:space="preserve">
-    <value>📊 Gebruik en kosten</value>
+    <value>Gebruik en kosten</value>
   </data>
   <data name="ChatWindowOpenInBrowserToolTip.Content" xml:space="preserve">
     <value>Openen in browser</value>

@@ -2106,9 +2106,6 @@ Sur votre hôte passerelle (Mac/Linux), exécutez :
   <data name="UsagePage_TextBlock_45.Text" xml:space="preserve">
     <value>Jetons</value>
   </data>
-  <data name="TokenCountText.Text" xml:space="preserve">
-    <value>284.5K</value>
-  </data>
   <data name="UsagePage_TextBlock_55.Text" xml:space="preserve">
     <value>Fournisseurs</value>
   </data>
@@ -2368,7 +2365,7 @@ Sur votre hôte passerelle (Mac/Linux), exécutez :
     <value>OpenClaw Menu</value>
   </data>
   <data name="UsagePage_TextBlock_10.Text" xml:space="preserve">
-    <value>📊 Utilisation et coût</value>
+    <value>Utilisation et coût</value>
   </data>
   <data name="ChatWindowOpenInBrowserToolTip.Content" xml:space="preserve">
     <value>Ouvrir dans le navigateur</value>

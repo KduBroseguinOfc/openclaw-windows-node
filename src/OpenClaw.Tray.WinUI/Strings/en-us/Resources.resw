@@ -2154,9 +2154,6 @@ On your gateway host (Mac/Linux), run:
   <data name="UsagePage_TextBlock_45.Text" xml:space="preserve">
     <value>Tokens</value>
   </data>
-  <data name="TokenCountText.Text" xml:space="preserve">
-    <value>284.5K</value>
-  </data>
   <data name="UsagePage_TextBlock_55.Text" xml:space="preserve">
     <value>Providers</value>
   </data>
@@ -2416,7 +2413,7 @@ On your gateway host (Mac/Linux), run:
     <value>OpenClaw Menu</value>
   </data>
   <data name="UsagePage_TextBlock_10.Text" xml:space="preserve">
-    <value>📊 Usage &amp; Cost</value>
+    <value>Usage &amp; Cost</value>
   </data>
   <data name="ChatWindowOpenInBrowserToolTip.Content" xml:space="preserve">
     <value>Open in Companion app</value>

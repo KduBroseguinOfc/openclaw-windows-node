@@ -2106,9 +2106,6 @@
   <data name="UsagePage_TextBlock_45.Text" xml:space="preserve">
     <value>æ¬Šæ–</value>
   </data>
-  <data name="TokenCountText.Text" xml:space="preserve">
-    <value>284.5K</value>
-  </data>
   <data name="UsagePage_TextBlock_55.Text" xml:space="preserve">
     <value>æä¾›è€…</value>
   </data>
@@ -2368,7 +2365,7 @@
     <value>OpenClaw Menu</value>
   </data>
   <data name="UsagePage_TextBlock_10.Text" xml:space="preserve">
-    <value>📊 使用量與成本</value>
+    <value>使用量與成本</value>
   </data>
   <data name="ChatWindowOpenInBrowserToolTip.Content" xml:space="preserve">
     <value>åœ¨ç€è¦½å™¨ä¸­é–‹å•Ÿ</value>
