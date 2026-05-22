@@ -214,20 +214,21 @@ public sealed partial class ChatPage : Page
         Func<string, Task>? readAloud = app is null ? null : app.SpeakChatTextAsync;
 
         // Consume a pending session-key hand-off from SessionsPage so the
-        // chat root mounts with that thread selected. Remount is the only
-        // path — OpenClawChatRoot has no live "switch thread" API.
+        // chat root mounts with that thread selected. Any pending key forces
+        // a remount — _mountedThreadId only records what we asked for, not
+        // what the user later picked inside the composer's dropdown, so we
+        // cannot use it to detect "already on the right thread".
         var pendingSessionKey = _hub?.PendingChatSessionKey;
         if (pendingSessionKey is not null && _hub is not null)
         {
             _hub.PendingChatSessionKey = null;
         }
         var threadIdToMount = pendingSessionKey ?? _mountedThreadId;
-        var threadChanged = pendingSessionKey is not null
-                            && !string.Equals(_mountedThreadId, pendingSessionKey, StringComparison.Ordinal);
+        var forceRemount = pendingSessionKey is not null;
 
         if (_functionalHost is not null
             && ReferenceEquals(_mountedProvider, provider)
-            && !threadChanged)
+            && !forceRemount)
         {
             PlaceholderPanel.Visibility = Visibility.Collapsed;
             ChatHost.Visibility = Visibility.Visible;
