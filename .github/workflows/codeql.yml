@@ -55,9 +55,33 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  default-setup:
+    name: Detect default setup
+    runs-on: ubuntu-latest
+    outputs:
+      enabled: ${{ steps.default-setup.outputs.enabled }}
+    steps:
+      - name: Check CodeQL default setup
+        id: default-setup
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          state="$(gh api "repos/${GITHUB_REPOSITORY}/code-scanning/default-setup" --jq .state 2>/dev/null || true)"
+          if [ "$state" = "configured" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            {
+              echo "CodeQL default setup is already configured for this repository."
+              echo "Skipping this advanced workflow because GitHub rejects advanced CodeQL SARIF uploads while default setup is enabled."
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "CodeQL default setup state: ${state:-unavailable}" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
   csharp:
     name: C# security
-    if: ${{ (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'workflow_dispatch' || inputs.profile == 'all' || inputs.profile == 'csharp') }}
+    needs: default-setup
+    if: ${{ needs.default-setup.outputs.enabled != 'true' && (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'workflow_dispatch' || inputs.profile == 'all' || inputs.profile == 'csharp') }}
     runs-on: windows-latest
     timeout-minutes: 45
     steps:
@@ -91,7 +115,8 @@ jobs:
 
   actions:
     name: Actions security
-    if: ${{ (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'workflow_dispatch' || inputs.profile == 'all' || inputs.profile == 'actions') }}
+    needs: default-setup
+    if: ${{ needs.default-setup.outputs.enabled != 'true' && (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'workflow_dispatch' || inputs.profile == 'all' || inputs.profile == 'actions') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
